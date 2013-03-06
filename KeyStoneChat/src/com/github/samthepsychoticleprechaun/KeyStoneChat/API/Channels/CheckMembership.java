@@ -4,6 +4,8 @@ import com.github.samthepsychoticleprechaun.KeyStoneChat.Storage.ChannelValues;
 
 public class CheckMembership {
 	
+	static ChannelValues channel = new ChannelValues();	
+	
 	/**
 	 * Checks if a player is a member of the given channel
 	 * 
@@ -11,11 +13,11 @@ public class CheckMembership {
 	 * @param name
 	 * @return
 	 */
-	public boolean checkMember(String channel, String name) {
+	public boolean checkMember(String channelname, String name) {
 		
-		int ind = ChannelValues.channelName.indexOf(channel);
+		int ind = channel.getChannelName().indexOf(channelname);
 		
-		if(ChannelValues.channelMembers.get(ind).contains(name)) {
+		if(channel.getChannelMembers().get(ind).contains(name)) {
 			
 			return true;
 			
@@ -32,11 +34,11 @@ public class CheckMembership {
 	 * @param name
 	 * @return
 	 */
-	public boolean checkModerator(String channel, String name) {
+	public boolean checkModerator(String channelname, String name) {
+
+		int ind = channel.getChannelName().indexOf(channelname);
 		
-		int ind = ChannelValues.channelName.indexOf(channel);
-		
-		if(ChannelValues.channelModerators.get(ind).contains(name)) {
+		if(channel.getChannelModerators().get(ind).contains(name)) {
 			
 			return true;
 			
@@ -53,11 +55,11 @@ public class CheckMembership {
 	 * @param name
 	 * @return
 	 */
-	public boolean checkOwner(String channel, String name) {
+	public boolean checkOwner(String channelname, String name) {
+
+		int ind = channel.getChannelName().indexOf(channelname);
 		
-		int ind = ChannelValues.channelName.indexOf(channel);
-		
-		if(ChannelValues.channelOwners.get(ind).contains(name)) {
+		if(channel.getChannelOwners().get(ind).contains(name)) {
 			
 			return true;
 			

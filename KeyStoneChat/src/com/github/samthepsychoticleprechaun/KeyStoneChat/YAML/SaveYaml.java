@@ -63,17 +63,20 @@ public class SaveYaml {
 		
 		File channelFile = KeyStoneChat.channelFile;
 		FileConfiguration channel = KeyStoneChat.channel;
+		ChannelValues channelVal = new ChannelValues();
 		
-		for(int x = 0; x <= (ChannelValues.channelName.size() -1); x++) {
+		int count = channelVal.getChannelCount();
+		
+		for(int x = 0; x <= (count -1); x++) {
 			
-			SetYamlValues.setChannelValues("id" + (x + 1) + ".channelName", ChannelValues.channelName.get(x));
-			SetYamlValues.setChannelValues("id" + (x + 1) + ".password", ChannelValues.password.get(x));
-			SetYamlValues.setChannelValues("id" + (x + 1) + ".hasPass", ChannelValues.hasPass.get(x));
-			SetYamlValues.setChannelValues("id" + (x + 1) + ".description", ChannelValues.description.get(x));
-			SetYamlValues.setChannelValues("id" + (x + 1) + ".hasDesc", ChannelValues.hasDesc.get(x));
-			SetYamlValues.setChannelValues("id" + (x + 1) + ".channelOwners", ChannelValues.channelOwners.get(x));
-			SetYamlValues.setChannelValues("id" + (x + 1) + ".channelModerators", ChannelValues.channelModerators.get(x));
-			SetYamlValues.setChannelValues("id" + (x + 1) + ".channelMembers", ChannelValues.channelMembers.get(x));
+			SetYamlValues.setChannelValues("id" + (x + 1) + ".channelName", channelVal.getChannelName().get(x));
+			SetYamlValues.setChannelValues("id" + (x + 1) + ".password", channelVal.getPassword().get(x));
+			SetYamlValues.setChannelValues("id" + (x + 1) + ".hasPass", channelVal.getHasPass().get(x));
+			SetYamlValues.setChannelValues("id" + (x + 1) + ".description", channelVal.getDescription().get(x));
+			SetYamlValues.setChannelValues("id" + (x + 1) + ".hasDesc", channelVal.getHasDesc().get(x));
+			SetYamlValues.setChannelValues("id" + (x + 1) + ".channelOwners", channelVal.getChannelOwners().get(x));
+			SetYamlValues.setChannelValues("id" + (x + 1) + ".channelModerators", channelVal.getChannelModerators().get(x));
+			SetYamlValues.setChannelValues("id" + (x + 1) + ".channelMembers", channelVal.getChannelMembers().get(x));
 			
 		}
 		

@@ -1,8 +1,12 @@
 package com.github.samthepsychoticleprechaun.KeyStoneChat.API.Channels;
 
+import java.util.List;
+
 import com.github.samthepsychoticleprechaun.KeyStoneChat.Storage.ChannelValues;
 
 public class SetMembership {
+	
+	static ChannelValues channel = new ChannelValues();
 	
 	/**
 	 * Sets a player's membership status to member no matter their previous rank
@@ -10,27 +14,35 @@ public class SetMembership {
 	 * @param channel
 	 * @param name
 	 */
-	public void forceMember(String channel, String name) {
+	public void forceMember(String channelname, String name) {
 		
-		int ind = ChannelValues.channelName.indexOf(channel);
+		int ind = channel.getChannelName().indexOf(channel);
+		List<String> listMem = channel.getChannelMembers().get(ind);
+		List<String> listMod = channel.getChannelModerators().get(ind);
+		List<String> listOwn = channel.getChannelOwners().get(ind);
 		
-		if(!ChannelValues.channelMembers.get(ind).contains(name)) {
+		if(!channel.getChannelMembers().get(ind).contains(name)) {
 			
-			ChannelValues.channelMembers.get(ind).add(name);
+			listMem.add(name);			
+			channel.setChannelMembers(listMem, ind);
 			
 		}
 			
-		while(ChannelValues.channelModerators.get(ind).contains(name)) {
+		while(channel.getChannelModerators().get(ind).contains(name)) {
 				
-			ChannelValues.channelModerators.get(ind).remove(name);
+			listMod.remove(name);
 				
 		}
+		
+		channel.setChannelModerators(listMod, ind);
 			
-		while(ChannelValues.channelOwners.get(ind).contains(name)) {
+		while(channel.getChannelOwners().get(ind).contains(name)) {
 				
-			ChannelValues.channelOwners.get(ind).remove(name);
+			listOwn.remove(name);
 				
 		}
+		
+		channel.setChannelOwners(listOwn, ind);
 		
 	}
 	
@@ -40,27 +52,34 @@ public class SetMembership {
 	 * @param channel
 	 * @param name
 	 */
-	public void forceModerator(String channel, String name) {
+	public void forceModerator(String channelname, String name) {
 		
-		int ind = ChannelValues.channelName.indexOf(channel);
+		int ind = channel.getChannelName().indexOf(channelname);
+		List<String> listMem = channel.getChannelMembers().get(ind);
+		List<String> listMod = channel.getChannelModerators().get(ind);
+		List<String> listOwn = channel.getChannelOwners().get(ind);
 		
-		if(!ChannelValues.channelMembers.get(ind).contains(name)) {
-			
-			ChannelValues.channelMembers.get(ind).add(name);
+		if(!channel.getChannelMembers().get(ind).contains(name)) {
+
+			listMem.add(name);
+			channel.setChannelMembers(listMem, ind);
 			
 		}
 			
-		if(!ChannelValues.channelModerators.get(ind).contains(name)) {
-				
-			ChannelValues.channelModerators.get(ind).add(name);
+		if(!channel.getChannelModerators().get(ind).contains(name)) {
+			
+			listMod.add(name);
+			channel.setChannelModerators(listMod, ind);
 				
 		}
 			
-		while(ChannelValues.channelOwners.get(ind).contains(name)) {
+		while(channel.getChannelOwners().get(ind).contains(name)) {
 				
-			ChannelValues.channelOwners.get(ind).remove(name);
+			listOwn.remove(name);
 				
 		}
+		
+		channel.setChannelOwners(listOwn, ind);
 		
 	}
 	
@@ -70,25 +89,31 @@ public class SetMembership {
 	 * @param channel
 	 * @param name
 	 */
-	public void forceOwner(String channel, String name) {
+	public void forceOwner(String channelname, String name) {
 		
-		int ind = ChannelValues.channelName.indexOf(channel);
+		int ind = channel.getChannelName().indexOf(channelname);
+		List<String> listMem = channel.getChannelMembers().get(ind);
+		List<String> listMod = channel.getChannelModerators().get(ind);
+		List<String> listOwn = channel.getChannelOwners().get(ind);
 		
-		if(!ChannelValues.channelMembers.get(ind).contains(name)) {
-			
-			ChannelValues.channelMembers.get(ind).add(name);
+		if(!channel.getChannelMembers().get(ind).contains(name)) {
+
+			listMem.add(name);
+			channel.setChannelMembers(listMem, ind);
 			
 		}
 			
-		if(!ChannelValues.channelModerators.get(ind).contains(name)) {
-				
-			ChannelValues.channelModerators.get(ind).add(name);
+		if(!channel.getChannelModerators().get(ind).contains(name)) {
+			
+			listMod.add(name);
+			channel.setChannelModerators(listMod, ind);
 				
 		}
 			
-		if(!ChannelValues.channelOwners.get(ind).contains(name)) {
-				
-			ChannelValues.channelOwners.get(ind).add(name);
+		if(!channel.getChannelOwners().get(ind).contains(name)) {
+			
+			listMod.add(name);
+			channel.setChannelOwners(listOwn, ind);
 				
 		}
 		
@@ -100,13 +125,16 @@ public class SetMembership {
 	 * @param channel
 	 * @param name
 	 */
-	public void setMember(String channel, String name) {
+	public void setMember(String channelname, String name) {
 		
-		int ind = ChannelValues.channelName.indexOf(channel);
+		int ind = channel.getChannelName().indexOf(channelname);
+		List<String> listMem = channel.getChannelMembers().get(ind);
 		
-		if(!ChannelValues.channelOwners.get(ind).contains(name) && !ChannelValues.channelModerators.get(ind).contains(name) && !ChannelValues.channelMembers.get(ind).contains(name)) {
+		
+		if(!channel.getChannelOwners().get(ind).contains(name) && !channel.getChannelModerators().get(ind).contains(name) && !channel.getChannelMembers().get(ind).contains(name)) {
 			
-			ChannelValues.channelMembers.get(ind).add(name);
+			listMem.add(name);
+			channel.setChannelMembers(listMem, ind);
 			
 		}
 		
@@ -118,17 +146,22 @@ public class SetMembership {
 	 * @param channel
 	 * @param name
 	 */
-	public void setModerator(String channel, String name) {
+	public void setModerator(String channelname, String name) {
 		
-		int ind = ChannelValues.channelName.indexOf(channel);
+		int ind = channel.getChannelName().indexOf(channelname);
+		List<String> listMem = channel.getChannelMembers().get(ind);
+		List<String> listMod = channel.getChannelModerators().get(ind);
 		
-		if(!ChannelValues.channelOwners.get(ind).contains(name) && !ChannelValues.channelModerators.get(ind).contains(name)) {
+		
+		if(!channel.getChannelOwners().get(ind).contains(name) && !channel.getChannelModerators().get(ind).contains(name)) {
 			
-			ChannelValues.channelModerators.get(ind).add(name);
+			listMod.add(name);
+			channel.setChannelModerators(listMod, ind);
 			
-			if(!ChannelValues.channelMembers.get(ind).contains(name)) {
+			if(!channel.getChannelMembers().get(ind).contains(name)) {
 				
-				ChannelValues.channelMembers.get(ind).add(name);
+				listMem.add(name);
+				channel.setChannelMembers(listMem, ind);
 				
 			}
 			
@@ -142,23 +175,30 @@ public class SetMembership {
 	 * @param channel
 	 * @param name
 	 */
-	public void setOwner(String channel, String name) {
+	public void setOwner(String channelname, String name) {
 		
-		int ind = ChannelValues.channelName.indexOf(channel);
+		int ind = channel.getChannelName().indexOf(channelname);
+		List<String> listMem = channel.getChannelMembers().get(ind);
+		List<String> listMod = channel.getChannelModerators().get(ind);
+		List<String> listOwn = channel.getChannelOwners().get(ind);
 		
-		if(!ChannelValues.channelOwners.get(ind).contains(name)) {
+		
+		if(!channel.getChannelOwners().get(ind).contains(name)) {
 			
-			ChannelValues.channelOwners.get(ind).add(name);
+			listOwn.add(name);
+			channel.setChannelOwners(listMod, ind);
 			
-			if(!ChannelValues.channelModerators.get(ind).contains(name)) {
+			if(!channel.getChannelModerators().get(ind).contains(name)) {
 				
-				ChannelValues.channelModerators.get(ind).add(name);
-				
-			}
+				listMod.add(name);
+				channel.setChannelModerators(listMod, ind);
 			
-			if(!ChannelValues.channelMembers.get(ind).contains(name)) {
+				if(!channel.getChannelMembers().get(ind).contains(name)) {
 				
-				ChannelValues.channelMembers.get(ind).add(name);
+					listMem.add(name);
+					channel.setChannelMembers(listMem, ind);
+				
+				}
 				
 			}
 			

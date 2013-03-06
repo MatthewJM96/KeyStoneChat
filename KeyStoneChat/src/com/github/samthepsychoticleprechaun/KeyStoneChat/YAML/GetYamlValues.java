@@ -13,21 +13,24 @@ public class GetYamlValues {
 		
 		FileConfiguration channel = KeyStoneChat.channel;
 		Logger log = KeyStoneChat.log;
+		ChannelValues channelVal = new ChannelValues();
 		
 		try {
 			
-			ChannelValues.channelcount = channel.getInt("channelcount");
+			channelVal.setChannelCount(channel.getInt("channelcount"));
 			
-			for(int x = 1; x <= ChannelValues.channelcount; x++) {
+			int count = channelVal.getChannelCount();
+			
+			for(int x = 1; x <= count; x++) {
 				
-				ChannelValues.channelName.add(channel.getString("id" + x +".channelName"));
-				ChannelValues.password.add(channel.getString("id" + x +".password"));
-				ChannelValues.hasPass.add(channel.getBoolean("id" + x + ".hasPass"));
-				ChannelValues.description.add(channel.getString("id" + x +".description"));
-				ChannelValues.hasDesc.add(channel.getBoolean("id" + x + ".hasDesc"));
-				ChannelValues.channelOwners.add(channel.getStringList("id" + x +".channelOwners"));
-				ChannelValues.channelModerators.add(channel.getStringList("id" + x +".channelModerators"));
-				ChannelValues.channelMembers.add(channel.getStringList("id" + x +".channelMembers"));
+				channelVal.addChannelName(channel.getString("id" + x +".channelName"));
+				channelVal.addPassword(channel.getString("id" + x +".password"));
+				channelVal.addHasPass(channel.getBoolean("id" + x + ".hasPass"));
+				channelVal.addDescription(channel.getString("id" + x +".description"));
+				channelVal.addHasDesc(channel.getBoolean("id" + x + ".hasDesc"));
+				channelVal.addChannelOwners(channel.getStringList("id" + x +".channelOwners"));
+				channelVal.addChannelModerators(channel.getStringList("id" + x +".channelModerators"));
+				channelVal.addChannelMembers(channel.getStringList("id" + x +".channelMembers"));
 				
 			}
 			
