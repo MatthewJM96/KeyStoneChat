@@ -14,12 +14,14 @@ public class SetMembership {
 	 * @param channel
 	 * @param name
 	 */
-	public void forceMember(String channelname, String name) {
+	public static void forceMember(String channelname, String name) {
 		
 		int ind = channel.getChannelName().indexOf(channel);
 		List<String> listMem = channel.getChannelMembers().get(ind);
 		List<String> listMod = channel.getChannelModerators().get(ind);
 		List<String> listOwn = channel.getChannelOwners().get(ind);
+		
+		checkLists(ind);
 		
 		if(!channel.getChannelMembers().get(ind).contains(name)) {
 			
@@ -52,12 +54,14 @@ public class SetMembership {
 	 * @param channel
 	 * @param name
 	 */
-	public void forceModerator(String channelname, String name) {
+	public static void forceModerator(String channelname, String name) {
 		
 		int ind = channel.getChannelName().indexOf(channelname);
 		List<String> listMem = channel.getChannelMembers().get(ind);
 		List<String> listMod = channel.getChannelModerators().get(ind);
 		List<String> listOwn = channel.getChannelOwners().get(ind);
+		
+		checkLists(ind);
 		
 		if(!channel.getChannelMembers().get(ind).contains(name)) {
 
@@ -89,12 +93,14 @@ public class SetMembership {
 	 * @param channel
 	 * @param name
 	 */
-	public void forceOwner(String channelname, String name) {
+	public static void forceOwner(String channelname, String name) {
 		
 		int ind = channel.getChannelName().indexOf(channelname);
 		List<String> listMem = channel.getChannelMembers().get(ind);
 		List<String> listMod = channel.getChannelModerators().get(ind);
 		List<String> listOwn = channel.getChannelOwners().get(ind);
+		
+		checkLists(ind);
 		
 		if(!channel.getChannelMembers().get(ind).contains(name)) {
 
@@ -125,11 +131,12 @@ public class SetMembership {
 	 * @param channel
 	 * @param name
 	 */
-	public void setMember(String channelname, String name) {
+	public static void setMember(String channelname, String name) {
 		
 		int ind = channel.getChannelName().indexOf(channelname);
 		List<String> listMem = channel.getChannelMembers().get(ind);
 		
+		checkLists(ind);
 		
 		if(!channel.getChannelOwners().get(ind).contains(name) && !channel.getChannelModerators().get(ind).contains(name) && !channel.getChannelMembers().get(ind).contains(name)) {
 			
@@ -146,12 +153,13 @@ public class SetMembership {
 	 * @param channel
 	 * @param name
 	 */
-	public void setModerator(String channelname, String name) {
+	public static void setModerator(String channelname, String name) {
 		
 		int ind = channel.getChannelName().indexOf(channelname);
 		List<String> listMem = channel.getChannelMembers().get(ind);
 		List<String> listMod = channel.getChannelModerators().get(ind);
 		
+		checkLists(ind);
 		
 		if(!channel.getChannelOwners().get(ind).contains(name) && !channel.getChannelModerators().get(ind).contains(name)) {
 			
@@ -175,13 +183,14 @@ public class SetMembership {
 	 * @param channel
 	 * @param name
 	 */
-	public void setOwner(String channelname, String name) {
+	public static void setOwner(String channelname, String name) {
 		
 		int ind = channel.getChannelName().indexOf(channelname);
 		List<String> listMem = channel.getChannelMembers().get(ind);
 		List<String> listMod = channel.getChannelModerators().get(ind);
 		List<String> listOwn = channel.getChannelOwners().get(ind);
 		
+		checkLists(ind);		
 		
 		if(!channel.getChannelOwners().get(ind).contains(name)) {
 			
@@ -201,6 +210,18 @@ public class SetMembership {
 				}
 				
 			}
+			
+		}
+		
+	}
+	
+	private static void checkLists(int index) {
+		
+		if(channel.getChannelMembers().get(index).contains("empty")) {
+			
+			List<String> list = channel.getChannelMembers().get(index);
+			list.remove("empty");
+			channel.setChannelMembers(list, index);			
 			
 		}
 		

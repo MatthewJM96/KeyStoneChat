@@ -20,13 +20,11 @@ public class CreateChannel {
 		KeyStoneChat plugin = KeyStoneChat.plugin;	
 		
 		String success = StringValues.createdchannel;
+		String failNameConflict = StringValues.failedchannelcreate;
 		
-		String[] arrayOwners = new String[] {creator};
-		List<String> listOwners = Arrays.asList(arrayOwners);
-		String[] arrayModerators = new String[] {creator};
-		List<String> listModerators = Arrays.asList(arrayModerators);
-		String[] arrayMembers = new String[] {creator};
-		List<String> listMembers = Arrays.asList(arrayMembers);
+		Player p = plugin.getServer().getPlayer(creator);
+		
+		if(!channel.getChannelName().contains(name)) {
 		
 		channel.setChannelCount(channel.getChannelCount() + 1);
 		channel.addChannelName(name);
@@ -34,18 +32,24 @@ public class CreateChannel {
 		channel.addHasPass(false);
 		channel.addDescription("empty");
 		channel.addHasDesc(false);
-		channel.addChannelOwners(listOwners);
-		channel.addChannelModerators(listModerators);
-		channel.addChannelMembers(listMembers);
+		SetMembership.forceOwner(name, creator);
 		
-		Player p = plugin.getServer().getPlayer(creator);
 		SendMessage.sendMessage(success + name, p);
+		
+		} else {
+			
+			SendMessage.sendMessage(failNameConflict, p);
+			
+		}
 		
 	}
 	
 	public static void createChannel(String name, CommandSender sender) {
 		
 		String success = StringValues.createdchannel;
+		String failNameConflict = StringValues.failedchannelcreate;
+		
+		if(!channel.getChannelName().contains(name)) {
 		
 		String[] arrayOwners = new String[] {"empty"};
 		List<String> listOwners = Arrays.asList(arrayOwners);
@@ -65,6 +69,12 @@ public class CreateChannel {
 		channel.addChannelMembers(listMembers);
 		
 		SendMessage.sendMessage(success + name, sender);
+		
+		} else {
+		
+		SendMessage.sendMessage(failNameConflict, sender);
+		
+		}
 		
 	}
 
