@@ -8,7 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.github.samthepsychoticleprechaun.KeyStoneChat.Listeners.formatListener;
-import com.github.samthepsychoticleprechaun.KeyStoneChat.YAML.LoadYaml;
+import com.github.samthepsychoticleprechaun.KeyStoneChat.YAML.LoadChatYaml;
 import com.github.samthepsychoticleprechaun.KeyStoneChat.YAML.SaveYaml;
 import com.github.samthepsychoticleprechaun.KeyStoneCore.Storage.ConfigValues;
 
@@ -31,11 +31,13 @@ public class KeyStoneChat extends JavaPlugin {
 		//Gets the plugin's logger
 		log = plugin.getLogger();
 		
+		LoadChatYaml load = new LoadChatYaml();
+		
 		//Creates and Loads necessary files
 	    if(!ConfigValues.usemysql) {
 	    channelFile = new File(getDataFolder(), "channels.yml");
 		channel = new YamlConfiguration();
-		LoadYaml.loadYamls();
+		load.loadYamls();
 		}
 	    
 	    //Register all chat listeners

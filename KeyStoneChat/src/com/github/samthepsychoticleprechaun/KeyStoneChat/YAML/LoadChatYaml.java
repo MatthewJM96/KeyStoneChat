@@ -13,20 +13,26 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import com.github.samthepsychoticleprechaun.KeyStoneChat.KeyStoneChat;
 
-public class LoadYaml {
+public class LoadChatYaml {
 	
 	private static KeyStoneChat plugin = KeyStoneChat.plugin;
 	private static Logger log = KeyStoneChat.log;
 	
+	public LoadChatYaml() {
+		return;
+	}
+	
 	/**
 	 *  Loads all files from <plugin>.jar file to plugins/<plugin> folder.
 	 * 
-	 * @return boolean
+	 * @return Boolean of true if successful, else returns false.
 	 */
-	public static boolean loadYamls() {
+	public boolean loadYamls() {
 		
-		loadConf();
-		loadChannel();
+		if(!loadConf())
+			return false;
+		if(!loadChannel())
+			return false;
 		
 		return true;
 		
@@ -84,12 +90,15 @@ public class LoadYaml {
 		} catch (FileNotFoundException e) {
 			log.info("Channel file was not found!");
 			e.printStackTrace();
+			return false;
 		} catch (IOException e) {
 			log.info("Error loading channel file!");
 			e.printStackTrace();
+			return false;
 		} catch (InvalidConfigurationException e) {
 			log.info("Error loading channel file!");
 			e.printStackTrace();
+			return false;
 		}
 
 		KeyStoneChat.channel = channel;
@@ -103,7 +112,7 @@ public class LoadYaml {
 	 * 
 	 * @return boolean
 	 */
-	public static boolean loadConf() {
+	public boolean loadConf() {
 		
 		File configFile = KeyStoneChat.configFile;
 		FileConfiguration config = KeyStoneChat.config;
@@ -113,12 +122,15 @@ public class LoadYaml {
 		} catch (FileNotFoundException e) {
 			log.info("Config file was not found!");
 			e.printStackTrace();
+			return false;
 		} catch (IOException e) {
 			log.info("Error loading config file!");
 			e.printStackTrace();
+			return false;
 		} catch (InvalidConfigurationException e) {
 			log.info("Error loading config file!");
 			e.printStackTrace();
+			return false;
 		}
 
 		KeyStoneChat.config = config;
@@ -132,7 +144,7 @@ public class LoadYaml {
 	 * 
 	 * @return boolean
 	 */
-	public static boolean loadChannel() {
+	public boolean loadChannel() {
 		
 		File channelFile = KeyStoneChat.channelFile;
 		FileConfiguration channel = KeyStoneChat.channel;
@@ -142,12 +154,15 @@ public class LoadYaml {
 		} catch (FileNotFoundException e) {
 			log.info("Channel file was not found!");
 			e.printStackTrace();
+			return false;
 		} catch (IOException e) {
 			log.info("Error loading channel file!");
 			e.printStackTrace();
+			return false;
 		} catch (InvalidConfigurationException e) {
 			log.info("Error loading channel file!");
 			e.printStackTrace();
+			return false;
 		}
 
 		KeyStoneChat.channel = channel;
@@ -163,7 +178,7 @@ public class LoadYaml {
 	 * @param in
 	 * @param file
 	 */
-	private static void copy(InputStream in, File file) {
+	private void copy(InputStream in, File file) {
 		
         try {
         	
