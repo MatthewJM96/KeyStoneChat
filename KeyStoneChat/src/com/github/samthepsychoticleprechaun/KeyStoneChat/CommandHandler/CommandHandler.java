@@ -25,9 +25,8 @@ public class CommandHandler implements CommandExecutor {
 		String noPermMsg = load.warnofnopermission;
 		String missingArgsMsg = load.missingargcmd;
 		String extraArgsMsg = load.extraargcmd;
-		String renameMsg = load.renamechannel;
 		
-		if(p.hasPermission(PermissionList.basiccmdusage) || !(sender instanceof Player) || p.isOp()) {
+		if(p.hasPermission(perm.basiccmdusage) || !(sender instanceof Player) || p.isOp()) {
 			
 			if (args[0].equalsIgnoreCase("cc") || args[0].equalsIgnoreCase("createchannel")) {
 				

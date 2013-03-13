@@ -13,16 +13,15 @@ import com.github.samthepsychoticleprechaun.KeyStoneCore.Storage.StringValues;
 
 public class CreateChannel {
 	
-	static ChannelValues channel = new ChannelValues();	
-	
-	
 	public static void createChannel(String name, String creator) {
 		
 		KeyStoneChat plugin = KeyStoneChat.plugin;	
 		SendMessage msg = new SendMessage();
+		StringValues load = new StringValues();
+		ChannelValues channel = new ChannelValues();	
 		
-		String success = StringValues.createdchannel;
-		String failNameConflict = StringValues.failedchannelcreate;
+		String success = load.createdchannel;
+		String failNameConflict = load.failedchannelcreate;
 		
 		Player p = plugin.getServer().getPlayer(creator);
 		
@@ -49,9 +48,11 @@ public class CreateChannel {
 	public static void createChannel(String name, CommandSender sender) {
 
 		SendMessage msg = new SendMessage();
+		StringValues load = new StringValues();
+		ChannelValues channel = new ChannelValues();	
 		
-		String success = StringValues.createdchannel;
-		String failNameConflict = StringValues.failedchannelcreate;
+		String success = load.createdchannel;
+		String failNameConflict = load.failedchannelcreate;
 		
 		if(!channel.getChannelName().contains(name)) {
 		

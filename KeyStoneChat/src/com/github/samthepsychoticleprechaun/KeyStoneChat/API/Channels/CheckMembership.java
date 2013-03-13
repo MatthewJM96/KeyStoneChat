@@ -4,7 +4,11 @@ import com.github.samthepsychoticleprechaun.KeyStoneChat.Storage.ChannelValues;
 
 public class CheckMembership {
 	
-	static ChannelValues channel = new ChannelValues();	
+	ChannelValues channel = new ChannelValues();	
+	
+	public CheckMembership() {
+		return;
+	}
 	
 	/**
 	 * Checks if a player is a member of the given channel

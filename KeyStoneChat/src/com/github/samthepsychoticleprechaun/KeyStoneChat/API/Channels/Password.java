@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import com.github.samthepsychoticleprechaun.KeyStoneChat.KeyStoneChat;
 import com.github.samthepsychoticleprechaun.KeyStoneChat.API.Chat.SendMessage;
 import com.github.samthepsychoticleprechaun.KeyStoneChat.Storage.ChannelValues;
@@ -20,6 +18,7 @@ public class Password {
 	
 	static ChannelValues channel = new ChannelValues();
 	static KeyStoneChat plugin = KeyStoneChat.plugin;
+	static StringValues load = new StringValues();
 	SendMessage msg = new SendMessage();
 	
 	public static List<CommandSender> senderList;
@@ -41,7 +40,7 @@ public class Password {
 		
 		if(!channel.getHasPass().get(ind)) {
 			
-			String success = StringValues.createdpassword;
+			String success = load.createdpassword;
 			
 			channel.setPassword(password, ind);
 			channel.setHasPass(true, ind);
@@ -49,7 +48,7 @@ public class Password {
 			
 		} else {
 						
-			String confirm = StringValues.confirmpassword;
+			String confirm = load.confirmpassword;
 			
 			senderList.add(sender);
 			passwordList.add(password);
@@ -70,7 +69,7 @@ public class Password {
 		
 		int ind = senderList.indexOf(sender);
 		
-		String success = StringValues.updatedpassword;
+		String success = load.updatedpassword;
 		
 		String password = passwordList.get(ind);
 		List<CommandSender> partialList;
@@ -101,7 +100,7 @@ public class Password {
 		
 		int ind = senderList.indexOf(sender);
 		
-		String denied = StringValues.retainedpassword;
+		String denied = load.deniedpassword;
 		
 		List<CommandSender> partialList;
 		List<Integer> inds = new ArrayList<Integer>();
