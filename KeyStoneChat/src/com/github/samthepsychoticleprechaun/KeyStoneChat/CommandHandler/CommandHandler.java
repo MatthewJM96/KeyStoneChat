@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 
 import com.github.samthepsychoticleprechaun.KeyStoneChat.API.Channels.CreateChannel;
 import com.github.samthepsychoticleprechaun.KeyStoneChat.API.Chat.SendMessage;
+import com.github.samthepsychoticleprechaun.KeyStoneChat.CommandHandler.Commands.RenameChannelCommand;
 import com.github.samthepsychoticleprechaun.KeyStoneCore.Permissions.PermissionList;
 import com.github.samthepsychoticleprechaun.KeyStoneCore.Storage.StringValues;
 
@@ -15,20 +16,26 @@ public class CommandHandler implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		
+		SendMessage msg = new SendMessage();
+		PermissionList perm = new PermissionList();
+		RenameChannelCommand rename = new RenameChannelCommand();
+		StringValues load = new StringValues();
+		
 		Player p = (Player) sender;
-		String noPermMsg = StringValues.warnofnopermission;
-		String missingArgsMsg = StringValues.missingargcmd;
-		String extraArgsMsg = StringValues.extraargcmd;
+		String noPermMsg = load.warnofnopermission;
+		String missingArgsMsg = load.missingargcmd;
+		String extraArgsMsg = load.extraargcmd;
+		String renameMsg = load.renamechannel;
 		
 		if(p.hasPermission(PermissionList.basiccmdusage) || !(sender instanceof Player) || p.isOp()) {
 			
-			if (args[0].equalsIgnoreCase("cc")) {
+			if (args[0].equalsIgnoreCase("cc") || args[0].equalsIgnoreCase("createchannel")) {
 				
-				if(p.hasPermission(PermissionList.channelBasicCreate) || p.isOp()) {
+				if(p.hasPermission(perm.channelBasicCreate) || p.isOp()) {
 				
 					if (args.length == 1) {
 					
-						SendMessage.sendMessage(missingArgsMsg + "&c /ks cc <Channel Name>", p);
+						msg.sendMessage(missingArgsMsg + "&c /ks cc <Channel Name>", p);
 					
 					} else if (args.length == 2) {
 				
@@ -37,7 +44,7 @@ public class CommandHandler implements CommandExecutor {
 				
 					} else {
 						
-						SendMessage.sendMessage(extraArgsMsg + "&c /ks cc <Channel Name>", p);
+						msg.sendMessage(extraArgsMsg + "&c /ks cc <Channel Name>", p);
 						
 					}
 				
@@ -45,7 +52,7 @@ public class CommandHandler implements CommandExecutor {
 					
 					if (args.length == 1) {
 						
-						SendMessage.sendMessage(missingArgsMsg + "&c", sender);
+						msg.sendMessage(missingArgsMsg + "&c /ks cc <Channel Name>", sender);
 						
 					} else if (args.length == 2) {
 						
@@ -53,13 +60,49 @@ public class CommandHandler implements CommandExecutor {
 						
 					} else {
 						
-						SendMessage.sendMessage(extraArgsMsg + "&c /ks cc <Channel Name>", sender);
+						msg.sendMessage(extraArgsMsg + "&c /ks cc <Channel Name>", sender);
 						
 					}
 					
 				} else {
 					
-					SendMessage.sendMessage(noPermMsg, p);
+					msg.sendMessage(noPermMsg, p);
+					
+				}
+				
+			} else if (args[0].equalsIgnoreCase("rc") || args[0].equalsIgnoreCase("renamechannel")) {
+				
+				if (p.hasPermission(perm.channelBasicRename) || p.hasPermission(perm.channelAdminRename) || p.isOp()) {
+					
+					if (args.length <= 2) {
+						
+						msg.sendMessage(missingArgsMsg + "&c /ks rc <Channel Name> <New Channel Name>", p);
+						
+					} else if (args.length == 3) {
+						
+						rename.renameChannelCmd(args[1], args[2], p);
+						
+					} else {
+						
+						msg.sendMessage(extraArgsMsg + "&c /ks rc <Channel Name> <New Channel Name>", p);
+						
+					}
+					
+				} else if (!(sender instanceof Player)) {
+					
+					if (args.length <= 2) {
+						
+						msg.sendMessage(missingArgsMsg + "&c /ks rc <Channel Name> <New Channel Name>", sender);
+						
+					} else if (args.length == 3) {
+						
+						rename.renameChannelCmd(args[1], args[2], sender);
+						
+					} else {
+						
+						msg.sendMessage(extraArgsMsg + "&c /ks rc <Channel Name> <New Channel Name>", sender);
+						
+					}
 					
 				}
 				

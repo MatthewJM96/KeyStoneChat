@@ -20,6 +20,7 @@ public class Password {
 	
 	static ChannelValues channel = new ChannelValues();
 	static KeyStoneChat plugin = KeyStoneChat.plugin;
+	SendMessage msg = new SendMessage();
 	
 	public static List<CommandSender> senderList;
 	public static List<String> passwordList;
@@ -44,7 +45,7 @@ public class Password {
 			
 			channel.setPassword(password, ind);
 			channel.setHasPass(true, ind);
-			SendMessage.sendMessage(success, sender);
+			msg.sendMessage(success, sender);
 			
 		} else {
 						
@@ -54,7 +55,7 @@ public class Password {
 			passwordList.add(password);
 			dateList.add(TimeParser.getSystDate());
 			channelNameList.add(channelName);
-			SendMessage.sendMessage(confirm, sender);
+			msg.sendMessage(confirm, sender);
 			
 		}
 	
@@ -92,7 +93,7 @@ public class Password {
 			dateList.remove(inds.get(x));
 			channelNameList.remove(inds.get(x));
 		}
-		SendMessage.sendMessage(success, sender);
+		msg.sendMessage(success, sender);
 		
 	}
 	
@@ -119,7 +120,7 @@ public class Password {
 			dateList.remove(inds.get(x));
 			channelNameList.remove(inds.get(x));
 		}
-		SendMessage.sendMessage(denied, sender);
+		msg.sendMessage(denied, sender);
 		
 		
 	}

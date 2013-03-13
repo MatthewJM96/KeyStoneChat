@@ -15,9 +15,11 @@ public class CreateChannel {
 	
 	static ChannelValues channel = new ChannelValues();	
 	
+	
 	public static void createChannel(String name, String creator) {
 		
 		KeyStoneChat plugin = KeyStoneChat.plugin;	
+		SendMessage msg = new SendMessage();
 		
 		String success = StringValues.createdchannel;
 		String failNameConflict = StringValues.failedchannelcreate;
@@ -34,17 +36,19 @@ public class CreateChannel {
 		channel.addHasDesc(false);
 		SetMembership.forceOwner(name, creator);
 		
-		SendMessage.sendMessage(success + name, p);
+		msg.sendMessage(success + name, p);
 		
 		} else {
 			
-			SendMessage.sendMessage(failNameConflict, p);
+			msg.sendMessage(failNameConflict, p);
 			
 		}
 		
 	}
 	
 	public static void createChannel(String name, CommandSender sender) {
+
+		SendMessage msg = new SendMessage();
 		
 		String success = StringValues.createdchannel;
 		String failNameConflict = StringValues.failedchannelcreate;
@@ -68,11 +72,11 @@ public class CreateChannel {
 		channel.addChannelModerators(listModerators);
 		channel.addChannelMembers(listMembers);
 		
-		SendMessage.sendMessage(success + name, sender);
+		msg.sendMessage(success + name, sender);
 		
 		} else {
 		
-		SendMessage.sendMessage(failNameConflict, sender);
+			msg.sendMessage(failNameConflict, sender);
 		
 		}
 		

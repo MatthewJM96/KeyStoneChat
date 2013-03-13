@@ -8,7 +8,11 @@ import org.bukkit.entity.Player;
 
 public class SendMessage {
 	
-	public static void sendMessage(String message, Player[] targets) {
+	public SendMessage() {
+		return;
+	}
+	
+	public void sendMessage(String message, Player[] targets) {
 		
 		String msg = Chat.replaceFormatting(message);
 		List<Player> list = Arrays.asList(targets);
@@ -21,7 +25,7 @@ public class SendMessage {
 		
 	}
 	
-	public static void sendMessage(String message, Player target) {
+	public void sendMessage(String message, Player target) {
 		
 		String msg = Chat.replaceFormatting(message);
 		
@@ -29,7 +33,7 @@ public class SendMessage {
 		
 	}
 
-	public static void sendMessage(String message, CommandSender target) {
+	public void sendMessage(String message, CommandSender target) {
 
 		String msg = Chat.replaceFormatting(message);
 		
