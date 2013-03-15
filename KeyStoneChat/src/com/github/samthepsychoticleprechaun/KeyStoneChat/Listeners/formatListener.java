@@ -2,6 +2,7 @@ package com.github.samthepsychoticleprechaun.KeyStoneChat.Listeners;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -11,8 +12,8 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import com.github.samthepsychoticleprechaun.KeyStoneChat.API.Chat.Chat;
 
 public class formatListener implements Listener {
-
-	@EventHandler (priority = EventPriority.HIGH)
+	
+	@EventHandler (priority = EventPriority.HIGHEST)
 	public void onChatListener(AsyncPlayerChatEvent e) {
 		
 		List<Player> playerList = new ArrayList<Player>(e.getRecipients());
