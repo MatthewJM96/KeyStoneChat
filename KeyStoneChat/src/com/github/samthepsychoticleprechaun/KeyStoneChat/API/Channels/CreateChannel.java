@@ -20,8 +20,8 @@ public class CreateChannel {
 		StringValues load = new StringValues();
 		ChannelValues channel = new ChannelValues();	
 		
-		String success = load.createdchannel;
-		String failNameConflict = load.failedchannelcreate;
+		String success = load.getCreatedchannel();
+		String failNameConflict = load.getFailedchannelcreate();
 		
 		Player p = plugin.getServer().getPlayer(creator);
 		
@@ -51,8 +51,8 @@ public class CreateChannel {
 		StringValues load = new StringValues();
 		ChannelValues channel = new ChannelValues();	
 		
-		String success = load.createdchannel;
-		String failNameConflict = load.failedchannelcreate;
+		String success = load.getCreatedchannel();
+		String failNameConflict = load.getFailedchannelcreate();
 		
 		if(!channel.getChannelName().contains(name)) {
 		

@@ -16,10 +16,11 @@ public class Password {
 		return;
 	}
 	
-	static ChannelValues channel = new ChannelValues();
-	static KeyStoneChat plugin = KeyStoneChat.plugin;
-	static StringValues load = new StringValues();
+	ChannelValues channel = new ChannelValues();
+	KeyStoneChat plugin = KeyStoneChat.plugin;
+	StringValues load = new StringValues();
 	SendMessage msg = new SendMessage();
+	TimeParser time = new TimeParser();
 	
 	public static List<CommandSender> senderList;
 	public static List<String> passwordList;
@@ -40,7 +41,7 @@ public class Password {
 		
 		if(!channel.getHasPass().get(ind)) {
 			
-			String success = load.createdpassword;
+			String success = load.getCreatedpassword();
 			
 			channel.setPassword(password, ind);
 			channel.setHasPass(true, ind);
@@ -48,11 +49,11 @@ public class Password {
 			
 		} else {
 						
-			String confirm = load.confirmpassword;
+			String confirm = load.getConfirmpassword();
 			
 			senderList.add(sender);
 			passwordList.add(password);
-			dateList.add(TimeParser.getSystDate());
+			dateList.add(time.getSystDate());
 			channelNameList.add(channelName);
 			msg.sendMessage(confirm, sender);
 			
@@ -69,7 +70,7 @@ public class Password {
 		
 		int ind = senderList.indexOf(sender);
 		
-		String success = load.updatedpassword;
+		String success = load.getUpdatedpassword();
 		
 		String password = passwordList.get(ind);
 		List<CommandSender> partialList;
@@ -100,7 +101,7 @@ public class Password {
 		
 		int ind = senderList.indexOf(sender);
 		
-		String denied = load.deniedpassword;
+		String denied = load.getDeniedpassword();
 		
 		List<CommandSender> partialList;
 		List<Integer> inds = new ArrayList<Integer>();

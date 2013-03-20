@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.github.samthepsychoticleprechaun.KeyStoneChat.Listeners.formatListener;
+import com.github.samthepsychoticleprechaun.KeyStoneChat.Listeners.recipientsListeners;
 import com.github.samthepsychoticleprechaun.KeyStoneChat.YAML.LoadChatYaml;
 import com.github.samthepsychoticleprechaun.KeyStoneChat.YAML.SaveYaml;
 import com.github.samthepsychoticleprechaun.KeyStoneCore.Storage.ConfigValues;
@@ -42,6 +43,7 @@ public class KeyStoneChat extends JavaPlugin {
 	    
 	    //Register all chat listeners
 	    getServer().getPluginManager().registerEvents(new formatListener(), this);
+	    getServer().getPluginManager().registerEvents(new recipientsListeners(), this);
 		
 	}
 	

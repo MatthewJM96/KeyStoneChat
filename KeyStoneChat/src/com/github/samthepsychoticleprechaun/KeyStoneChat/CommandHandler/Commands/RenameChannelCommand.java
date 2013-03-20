@@ -21,13 +21,13 @@ public class RenameChannelCommand {
 		return;
 	}
 	
-	String renameChannelMsg = load.renamechannel;
-	String noPermMsg = load.warnofnopermission;
-	String noOwnModMsg = load.renamedisallowed;
+	String renameChannelMsg = load.getRenamechannel();
+	String noPermMsg = load.getWarnofnopermission();
+	String noOwnModMsg = load.getRenamedisallowed();
 	
 	public void renameChannelCmd(String channelName, String newName, Player player) {
 		
-		if (check.checkModerator(channelName, player.getName()) || check.checkOwner(channelName, player.getName()) || player.hasPermission(perm.channelAdminRename)) {
+		if (check.checkModerator(channelName, player.getName()) || check.checkOwner(channelName, player.getName()) || player.hasPermission(perm.getChannelAdminRename())) {
 		
 		rename.renameChannel(channelName, newName);
 		
